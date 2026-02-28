@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Outputs (generated at runtime)
+outputs/figures/*.png
+outputs/figures/*.jpg
+outputs/predictions/*.csv
+outputs/predictions/*.npy
+
+# Data files (too large for git)
+data/*.csv
+data/*.gpkg
+data/*.geojson
+data/*.shp
+data/*.dbf
+data/*.shx
+data/*.prj
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
