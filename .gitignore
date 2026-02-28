@@ -40,5 +40,5 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Streamlit
-.streamlit/
+# Streamlit — commit config but never secrets
+.streamlit/secrets.toml
