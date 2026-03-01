@@ -52,11 +52,11 @@ hr{border-color:#21262d;margin:.5rem 0}
 </style>""", unsafe_allow_html=True)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-TRAIN_MONTHS = 20
-N_FORECAST   = 4
-CELL_SIZE    = 2_000   # 2 km cells → 10×10=100 cells (vs 400) — 4× faster
+TRAIN_MONTHS = 12   # 1 year of training (was 20) — fewer ARIMA fits
+N_FORECAST   = 2    # 2 months ahead (was 4)
+CELL_SIZE    = 2_000   # 2 km cells → 10×10=100 cells — 4× faster than 1km
 BBOX         = (0, 0, 20_000, 20_000)
-N_EVENTS     = 6_000   # reduced from 10k for faster KDE / ST-DBSCAN
+N_EVENTS     = 4_000   # reduced for faster KDE / ST-DBSCAN on free tier
 MAP_H        = 565
 
 LAYERS = [
@@ -146,8 +146,8 @@ def _gwr(_stc):
 
 @st.cache_data(show_spinner=False)
 def _ripley(_gdf, bbox):
-    s = _gdf.sample(min(2000, len(_gdf)), random_state=42)
-    return ripley_kl(s, bbox=bbox)
+    s = _gdf.sample(min(800, len(_gdf)), random_state=42)
+    return ripley_kl(s, bbox=bbox, n_simulations=9)
 
 @st.cache_data(show_spinner=False)
 def _stat_df(_stc): return stationarity_report(_stc, min_total=5)
