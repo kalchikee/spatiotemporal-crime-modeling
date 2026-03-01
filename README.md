@@ -3,6 +3,9 @@
 
 A full spatiotemporal crime analysis pipeline built in Python — from raw event data through statistical modeling to an interactive Streamlit web map.  Covers all 8 phases of advanced spatial crime analysis.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/kalchikee/spatiotemporal-crime-modeling)
+[![CI](https://github.com/kalchikee/spatiotemporal-crime-modeling/actions/workflows/ci.yml/badge.svg)](https://github.com/kalchikee/spatiotemporal-crime-modeling/actions/workflows/ci.yml)
+
 ---
 
 ## Live Dashboard Preview
