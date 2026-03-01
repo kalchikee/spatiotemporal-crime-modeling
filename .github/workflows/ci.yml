@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Verify all modules import cleanly
+        run: |
+          python -c "
+          from src.data_loader      import SyntheticCrimeGenerator
+          from src.space_time_cube  import SpaceTimeCube
+          from src.hotspot_analysis import EmergingHotspotAnalyzer
+          from src.exploratory      import compute_kde_on_grid
+          from src.clustering       import STDBSCAN
+          from src.forecasting      import SpaceTimeForecaster
+          from src.gwr_model        import GWRModel
+          from src.spatial_lag      import OLSBaseline, morans_i
+          from src.evaluation       import PredictiveAccuracyEvaluator
+          from src.web_utils        import localize_gdf, CHICAGO_OFFSET
+          print('All modules imported successfully.')
+          "
+
+      - name: Generate synthetic data smoke test
+        run: |
+          python -c "
+          from src.data_loader     import SyntheticCrimeGenerator
+          from src.space_time_cube import SpaceTimeCube
+          gdf = SyntheticCrimeGenerator(n_events=500, seed=42).generate()
+          stc = SpaceTimeCube(cell_size=2000, bbox=(0,0,20000,20000), freq='M')
+          stc.fit(gdf)
+          assert stc.cube.sum() > 0
+          print(f'Smoke test passed — {len(gdf)} events, cube shape {stc.cube.shape}')
+          "

@@ -54,9 +54,9 @@ hr{border-color:#21262d;margin:.5rem 0}
 # ── Constants ─────────────────────────────────────────────────────────────────
 TRAIN_MONTHS = 20
 N_FORECAST   = 4
-CELL_SIZE    = 1_000
+CELL_SIZE    = 2_000   # 2 km cells → 10×10=100 cells (vs 400) — 4× faster
 BBOX         = (0, 0, 20_000, 20_000)
-N_EVENTS     = 10_000
+N_EVENTS     = 6_000   # reduced from 10k for faster KDE / ST-DBSCAN
 MAP_H        = 565
 
 LAYERS = [

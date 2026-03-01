@@ -15,9 +15,10 @@ from shapely.affinity import translate as shp_translate
 from shapely.geometry import mapping
 
 
-# Chicago UTM Zone 16N base — shifts local (0,0)–(20000,20000) onto the map
-CHICAGO_OFFSET = (446_000, 4_630_000)   # (easting, northing)
-MAP_CENTER     = {"lat": 41.88, "lon": -87.64}
+# Chicago UTM Zone 16N base — shifts local (0,0)–(20000,20000) onto the map.
+# Box spans easting 430k–450k (≈ -87.80° to -87.60°), entirely west of lakefront.
+CHICAGO_OFFSET = (430_000, 4_623_000)   # (easting, northing)
+MAP_CENTER     = {"lat": 41.85, "lon": -87.73}
 MAP_ZOOM_FULL  = 11
 MAP_ZOOM_CELL  = 13
 
